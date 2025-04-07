@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <numeric>
+#include <stdexcept>
 
 class Studentas {
 private:
@@ -15,15 +16,17 @@ private:
     double galutinisBalas_;
 
 public:
-    Studentas();  // default konstruktorius
-    Studentas(std::istream& is);  // konstruktorius su stream
-    ~Studentas(); // destruktorius
+    Studentas();                 // Default konstruktorius
+    Studentas(std::istream& is); // Konstruktorius su įvestimi
+    ~Studentas();                // Destruktorius
 
+    // Getteriai
     std::string vardas() const;
     std::string pavarde() const;
     int egzaminas() const;
     double galutinisBalas() const;
 
+    // Metodai
     std::istream& readStudent(std::istream& is);
     void apskaiciuotiGalutini();
 };
