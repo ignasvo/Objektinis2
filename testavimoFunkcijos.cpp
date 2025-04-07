@@ -2,25 +2,18 @@
 
 // ========================= NUSKAITYMAS =========================
 template<typename Container>
+template<typename Container>
+
 void nuskaitytiIsFailo(Container& studentai, const std::string& failoVardas) {
     std::ifstream failas(failoVardas);
     if (!failas) throw std::runtime_error("Failas nerastas: " + failoVardas);
 
     std::string eilute;
-    getline(failas, eilute); // Praleidžiame antraštę
+    std::getline(failas, eilute); // praleidžiam antraštę
 
-    while (getline(failas, eilute)) {
-        Student s;
+    while (std::getline(failas, eilute)) {
         std::istringstream iss(eilute);
-        iss >> s.vardas >> s.pavarde;
-
-        int pazymys;
-        while (iss >> pazymys) s.namuDarbai.push_back(pazymys);
-
-        if (s.namuDarbai.empty()) throw std::runtime_error("Truksta pazymiu");
-
-        s.egzaminas = s.namuDarbai.back();
-        s.namuDarbai.pop_back();
+        Studentas s(iss);
         studentai.push_back(s);
     }
 }
