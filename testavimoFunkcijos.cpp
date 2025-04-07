@@ -31,7 +31,7 @@ void testuotiStrategija3_Vector(const std::string& failoVardas) {
     auto end = std::chrono::high_resolution_clock::now();
 
     std::cout << "\n=== Vector + Strategija3 ===\n"
-              << "Trukmė: " << std::chrono::duration<double>(end - start).count() << " s\n";
+              << "Trukme: " << std::chrono::duration<double>(end - start).count() << " s\n";
 }
 
 // Šablonų instancijavimas
