@@ -17,7 +17,7 @@ void nuskaitytiIsFailo(Container& studentai, const std::string& failoVardas) {
         int pazymys;
         while (iss >> pazymys) s.namuDarbai.push_back(pazymys);
 
-        if (s.namuDarbai.empty()) throw std::runtime_error("Trūksta pažymių");
+        if (s.namuDarbai.empty()) throw std::runtime_error("Truksta pazymiu");
 
         s.egzaminas = s.namuDarbai.back();
         s.namuDarbai.pop_back();
