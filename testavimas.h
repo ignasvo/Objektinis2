@@ -12,15 +12,10 @@
 #include <algorithm>
 #include <typeinfo>
 
-// Studento struktūra
-struct Student {
-    std::string vardas, pavarde;
-    std::vector<int> namuDarbai;
-    int egzaminas;
-    double galutinisBalas;
-};
+#include "Studentas.h" // nauja klasė vietoj struct
 
-// Šabloninės funkcijos
+// ==================== Šabloninės funkcijos ====================
+
 template<typename Container>
 void nuskaitytiIsFailo(Container& studentai, const std::string& failoVardas);
 
@@ -41,25 +36,26 @@ void testuotiStrategijas(const std::string& failoVardas);
 
 void testuotiVisusKonteinerius(const std::string& failoVardas);
 
-// Funkcija, grąžinanti konteinerio pavadinimą
+// ==================== Konteinerio pavadinimas ====================
+
 template<typename Container>
 struct ContainerName {
     static std::string name() { return typeid(Container).name(); }
 };
 
-// Specializacijos kiekvienam konteineriui
+// Specializacijos
 template<>
-struct ContainerName<std::vector<Student>> {
+struct ContainerName<std::vector<Studentas>> {
     static std::string name() { return "Vector"; }
 };
 
 template<>
-struct ContainerName<std::list<Student>> {
+struct ContainerName<std::list<Studentas>> {
     static std::string name() { return "List"; }
 };
 
 template<>
-struct ContainerName<std::deque<Student>> {
+struct ContainerName<std::deque<Studentas>> {
     static std::string name() { return "Deque"; }
 };
 
