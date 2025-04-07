@@ -5,6 +5,6 @@ int main() {
     std::cout << "Iveskite testo failo pavadinima: ";
     std::getline(std::cin, failoVardas);
 
-    testuotiVisusKonteinerius(failoVardas);
+    testuotiStrategija3_Vector(failoVardas);
     return 0;
 }
