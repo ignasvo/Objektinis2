@@ -113,6 +113,8 @@ template <typename Container>
 void testuoti(const std::string& failas, int strategija) {
     Container studentai, vargsai, kietiakai;
 
+    auto bendraStart = std::chrono::high_resolution_clock::now();
+
     auto start = std::chrono::high_resolution_clock::now();
     nuskaitytiIsFailo(studentai, failas);
     auto end = std::chrono::high_resolution_clock::now();
@@ -133,6 +135,10 @@ void testuoti(const std::string& failas, int strategija) {
     end = std::chrono::high_resolution_clock::now();
     std::cout << "Skaidymas uztruko: "
               << std::chrono::duration<double>(end - start).count() << " s\n";
+
+    auto bendraEnd = std::chrono::high_resolution_clock::now();
+    std::cout << "\nBendras testavimo laikas: "
+              << std::chrono::duration<double>(bendraEnd - bendraStart).count() << " s\n";
 }
 
 // Explicit instancijos
