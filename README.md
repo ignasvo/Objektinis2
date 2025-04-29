@@ -1,44 +1,29 @@
-# Objektinis2 — Versija 1.1
+## v1.1 - "Class" ir "Struct" našumo palyginimas naudojant vektorių ir 3 strategiją
 
-## ✅ Pakeitimai nuo v1.0
+Šioje versijoje atliktas struktūros (`struct`) ir klasės (`class`) taikymo efektyvumo palyginimas apdorojant studentų duomenis. Tyrimo metu buvo naudojamas tik `std::vector` konteineris ir 3-ioji skaidymo strategija, paremta `std::stable_partition`, kaip greičiausia bei atminties požiūriu efektyviausia.
 
-- `struct Student` pakeistas į `class Studentas`
-- Sukurtas `istream` konstruktorius ir `readStudent()` metodas
-- Pridėtas `galutinisBalas()` getteris, kuris apskaičiuojamas klasės viduje
-- Visos operacijos perkeltos prie klasės lygio (encapsulation)
-- Palikta tik greičiausia strategija — `strategija3` (su `std::partition`)
-- Naudojamas tik `std::vector<Studentas>` konteineris
+Testai vykdyti su dviem studentų kiekiais (100 000 ir 1 000 000), su skirtingomis optimizavimo vėliavomis, matuojant:
+- programos veikimo laiką,
+- vykdomojo `.exe` failo dydį.
 
----
+Tikslas — įvertinti, ar perėjimas nuo struktūros prie klasės daro įtaką veikimui bei kompiliuojamo kodo apimčiai.
 
-## 🧪 Eksperimentinė analizė
+### "Class" ir "Struct" tyrimo rezultatai
 
-### 🔹 Strategijų palyginimas (skirstymo laikas):
+| Programos veikimo laikas su CLASS | Programos veikimo laikas su STRUCT | Studentų kiekis | Optimizavimo vėliava | .exe failo dydis su CLASS (KB) | .exe failo dydis su STRUCT (KB) |
+|:----------------------------------|:-----------------------------------|:-------------------|:-------------------------|:-----------------------------|:------------------------------|
+|               0.27                |                0.21               | 100 000             | -O3                      |            252               |              259              |
+|               0.24                |                0.18               | 100 000             | -O2                      |            253               |              254              |
+|               0.28                |                0.18               | 100 000             | -O1                      |            285               |              275              |
+|               0.53                |                0.43               | 100 000             | -                        |            564               |              468              |
+|               2.41                |                2.32               | 1 000 000           | -O3                      |            252               |              259              |
+|               2.28                |                2.13               | 1 000 000           | -O2                      |            253               |              254              |
+|               2.55                |                2.41               | 1 000 000           | -O1                      |            285               |              275              |
+|               5.77                |                4.70               | 1 000 000           | -                        |            564               |              468              |
 
-Testuota su 1 milijono studentų:
+### Išvados
 
-| Konteineris | Strategija1 | Strategija2 | Strategija3 |
-|-------------|-------------|-------------|-------------|
-| Vector      | 0.3004 s    | 0.2130 s    | **0.2053 s** |
+Remiantis atliktu tyrimu, kuriame naudotas `std::vector` konteineris bei 3-ioji (partition) skaidymo strategija, galima teigti:
 
-> Todėl tolimesniems bandymams naudota tik `Strategija3`
-
----
-
-### 🔹 Optimizavimo lygiai (Strategija3, Vector)
-
-| Optimizavimas | 100k laikas | 1M laikas | .exe dydis |
-|---------------|-------------|-----------|------------|
-| `-O1`         | 0.0067 s    | 0.099 s   | 166 KB     |
-| `-O2`         | 0.0066 s    | 0.081 s   | 164 KB     |
-| `-O3`         | 0.0063 s    | 0.081 s   | 166 KB     |
-
----
-
-## 📝 Išvados
-
-- Strategija3 pasirodė greičiausiai iš visų, ypač su `std::vector`
-- Optimizavimo lygiai `-O2` ir `-O3` davė pastebimai geresnį veikimo laiką nei neoptimizuotas kodas
-- Galutinė realizacija yra stabili, greita ir tvarkinga pagal OOP principus
-
----
+- `struct` pagrindu veikianti versija dažniausiai veikia kiek greičiau nei `class`.
+- Tarp `class` ir `struct` versijų .exe failo dydis skiriasi nežymiai, tačiau optimizavimo vėliavos (`-O1`, `-O2`, `-O3`) daro ženklią įtaką tiek laikui, tiek failo dydžiui.
