@@ -32,4 +32,4 @@ Sukurtas testavimo failas `testas.cpp`, kuris patikrina visų metodų veikimą:
 kopijavimą, perkėlimą, įvestį/išvestį.  
 Jei testas išsiveda be klaidų – visi metodai veikia teisingai.
 
-![image](https://github.com/user-attachments/assets/95390c94-d71c-4863-9d1b-40a8e87404ff)
+![image](https://github.com/user-attachments/assets/819ffdc5-ddf9-49f4-b623-40cfb9bda8b4)
