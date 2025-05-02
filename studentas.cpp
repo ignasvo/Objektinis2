@@ -62,6 +62,8 @@ Studentas& Studentas::operator=(Studentas&& other) noexcept {
 std::string Studentas::vardas() const { return vardas_; }
 std::string Studentas::pavarde() const { return pavarde_; }
 double Studentas::galutinis() const { return galutinis_; }
+const std::vector<int>& Studentas::nd() const { return nd_;}
+int Studentas::egzaminas() const { return egzaminas_;}
 
 // Setteriai
 void Studentas::setVardas(const std::string& vardas) { vardas_ = vardas; }

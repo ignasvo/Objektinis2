@@ -23,7 +23,7 @@ void testRuleOfFive() {
 }
 
 void testIO() {
-    std::cout << "\n Ivesties ir isvesties operatoriu testas\n";
+    std::cout << "\nIvesties ir isvesties operatoriu testas\n";
 
     std::istringstream iss("Ona Onute 10 9 8 7");
     Studentas s;
