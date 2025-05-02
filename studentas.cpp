@@ -5,23 +5,23 @@
 #include <stdexcept>
 #include <algorithm>
 
-// Tuščias konstruktorius
+// Default konstruktorius
 Studentas::Studentas()
     : vardas_(""), pavarde_(""), nd_(), egzaminas_(0), galutinis_(0.0) {}
 
-// Pilnas konstruktorius
+// Užpildytas konstruktorius
 Studentas::Studentas(const std::string& vardas, const std::string& pavarde,
                      const std::vector<int>& nd, int egzaminas)
     : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas) {
     skaiciuotiGalutini('v');  // default 'vidurkis'
 }
 
-// Copy constructor
+// Kopijavimo konstruktorius
 Studentas::Studentas(const Studentas& other)
     : vardas_(other.vardas_), pavarde_(other.pavarde_),
       nd_(other.nd_), egzaminas_(other.egzaminas_), galutinis_(other.galutinis_) {}
 
-// Move constructor
+// Perkėlimo konstruktorius
 Studentas::Studentas(Studentas&& other) noexcept
     : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
       nd_(std::move(other.nd_)), egzaminas_(other.egzaminas_), galutinis_(other.galutinis_) {
@@ -30,7 +30,13 @@ Studentas::Studentas(Studentas&& other) noexcept
 }
 
 // Destruktorius
-Studentas::~Studentas() = default;
+Studentas::~Studentas() {
+    nd_.clear();
+    vardas_.clear();
+    pavarde_.clear();
+    egzaminas_ = 0;
+    galutinis_ = 0.0;
+}
 
 // Copy assignment
 Studentas& Studentas::operator=(const Studentas& other) {
