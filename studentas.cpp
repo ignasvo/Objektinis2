@@ -1,110 +1,143 @@
-#include "Studentas.h"
+#include "studentas.h"
+#include <iostream>
+#include <iomanip>
+#include <numeric>
+#include <stdexcept>
+#include <algorithm>
 
 // Tuščias konstruktorius
-Studentas::Studentas() : egzaminas_(0), galutinisBalas_(0.0) {}
+Studentas::Studentas()
+    : vardas_(""), pavarde_(""), nd_(), egzaminas_(0), galutinis_(0.0) {}
 
-// Konstruktorius su nuskaitymu
-Studentas::Studentas(std::istream& is) {
-    read(is);
+// Pilnas konstruktorius
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde,
+                     const std::vector<int>& nd, int egzaminas)
+    : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas) {
+    skaiciuotiGalutini('v');  // default 'vidurkis'
+}
+
+// Copy constructor
+Studentas::Studentas(const Studentas& other)
+    : vardas_(other.vardas_), pavarde_(other.pavarde_),
+      nd_(other.nd_), egzaminas_(other.egzaminas_), galutinis_(other.galutinis_) {}
+
+// Move constructor
+Studentas::Studentas(Studentas&& other) noexcept
+    : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
+      nd_(std::move(other.nd_)), egzaminas_(other.egzaminas_), galutinis_(other.galutinis_) {
+    other.egzaminas_ = 0;
+    other.galutinis_ = 0.0;
+}
+
+// Destruktorius
+Studentas::~Studentas() = default;
+
+// Copy assignment
+Studentas& Studentas::operator=(const Studentas& other) {
+    if (this != &other) {
+        vardas_ = other.vardas_;
+        pavarde_ = other.pavarde_;
+        nd_ = other.nd_;
+        egzaminas_ = other.egzaminas_;
+        galutinis_ = other.galutinis_;
+    }
+    return *this;
+}
+
+// Move assignment
+Studentas& Studentas::operator=(Studentas&& other) noexcept {
+    if (this != &other) {
+        vardas_ = std::move(other.vardas_);
+        pavarde_ = std::move(other.pavarde_);
+        nd_ = std::move(other.nd_);
+        egzaminas_ = other.egzaminas_;
+        galutinis_ = other.galutinis_;
+        other.egzaminas_ = 0;
+        other.galutinis_ = 0.0;
+    }
+    return *this;
 }
 
 // Getteriai
-std::string Studentas::vardas() const {
-    return vardas_;
-}
-
-std::string Studentas::pavarde() const {
-    return pavarde_;
-}
-
-int Studentas::egzaminas() const {
-    return egzaminas_;
-}
-
-double Studentas::galutinis() const {
-    return galutinisBalas_;
-}
-
-const std::vector<int>& Studentas::nd() const {
-    return nd_;
-}
+std::string Studentas::vardas() const { return vardas_; }
+std::string Studentas::pavarde() const { return pavarde_; }
+double Studentas::galutinis() const { return galutinis_; }
 
 // Setteriai
-void Studentas::setVardas(const std::string& vardas) {
-    vardas_ = vardas;
-}
+void Studentas::setVardas(const std::string& vardas) { vardas_ = vardas; }
+void Studentas::setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
+void Studentas::setEgzaminas(int egz) { egzaminas_ = egz; }
+void Studentas::pridetiND(int nd) { nd_.push_back(nd); }
 
-void Studentas::setPavarde(const std::string& pavarde) {
-    pavarde_ = pavarde;
-}
-
-void Studentas::setEgzaminas(int egzaminas) {
-    egzaminas_ = egzaminas;
-}
-
-void Studentas::pridetiND(int pazymys) {
-    nd_.push_back(pazymys);
-}
-
-// Metodas galutinio balo skaiciavimui
-void Studentas::skaiciuotiGalutini(char metodas) {
-    if (nd_.empty()) {
-        galutinisBalas_ = 0.0;
-        return;
-    }
-
-    if (metodas == 'V' || metodas == 'v') {
-        double suma = std::accumulate(nd_.begin(), nd_.end(), 0.0);
-        galutinisBalas_ = 0.4 * (suma / nd_.size()) + 0.6 * egzaminas_;
-    } else {
-        std::sort(nd_.begin(), nd_.end());
-        size_t dydis = nd_.size();
-        double mediana;
-        if (dydis % 2 == 0)
-            mediana = (nd_[dydis/2 - 1] + nd_[dydis/2]) / 2.0;
-        else
-            mediana = nd_[dydis/2];
-        galutinisBalas_ = 0.4 * mediana + 0.6 * egzaminas_;
-    }
-}
-
-// Metodas pažymių generavimui
 void Studentas::generuotiPazymius(int kiek) {
     nd_.clear();
-    nd_.resize(kiek);
-    for (int& paz : nd_) {
-        paz = rand() % 10 + 1;
-    }
+    for (int i = 0; i < kiek; ++i)
+        nd_.push_back(rand() % 10 + 1);
     egzaminas_ = rand() % 10 + 1;
 }
 
-// Metodas duomenų nuskaitymui
-std::istream& Studentas::read(std::istream& is) {
-    is >> vardas_ >> pavarde_;
-    int paz;
-    while (is >> paz) {
-        nd_.push_back(paz);
+void Studentas::skaiciuotiGalutini(char metodas) {
+    if (nd_.empty()) {
+        galutinis_ = 0.4 * 0 + 0.6 * egzaminas_;
+        return;
     }
+
+    double ndRezultatas = 0.0;
+    if (metodas == 'v') {
+        ndRezultatas = std::accumulate(nd_.begin(), nd_.end(), 0.0) / nd_.size();
+    } else if (metodas == 'm') {
+        std::sort(nd_.begin(), nd_.end());
+        if (nd_.size() % 2 == 0)
+            ndRezultatas = (nd_[nd_.size()/2 - 1] + nd_[nd_.size()/2]) / 2.0;
+        else
+            ndRezultatas = nd_[nd_.size()/2];
+    } else {
+        throw std::invalid_argument("Neteisingas metodas");
+    }
+
+    galutinis_ = 0.4 * ndRezultatas + 0.6 * egzaminas_;
+}
+
+// I/O operatoriai
+std::istream& Studentas::read(std::istream& is) {
+    nd_.clear();
+    is >> vardas_ >> pavarde_;
+    int pazymys;
+    while (is >> pazymys) {
+        if (pazymys < 1 || pazymys > 10) break;
+        nd_.push_back(pazymys);
+    }
+
     if (!nd_.empty()) {
         egzaminas_ = nd_.back();
         nd_.pop_back();
+    } else {
+        egzaminas_ = 0;
     }
+
+    skaiciuotiGalutini('v');
     return is;
 }
 
-Studentas::~Studentas() {
-    // Kadangi nenaudojam new ar failų, nieko nereikia sunaikinti.
+std::istream& operator>>(std::istream& is, Studentas& s) {
+    return s.read(is);
 }
 
-// Draugai: palyginimo funkcijos
+std::ostream& operator<<(std::ostream& os, const Studentas& s) {
+    os << std::left << std::setw(15) << s.vardas_
+       << std::setw(15) << s.pavarde_
+       << std::fixed << std::setprecision(2)
+       << s.galutinis_;
+    return os;
+}
+
+// Palyginimo funkcijos
 bool compareVardas(const Studentas& a, const Studentas& b) {
-    return a.vardas_ < b.vardas_;
+    return a.vardas() < b.vardas();
 }
-
 bool comparePavarde(const Studentas& a, const Studentas& b) {
-    return a.pavarde_ < b.pavarde_;
+    return a.pavarde() < b.pavarde();
 }
-
 bool compareGalutinis(const Studentas& a, const Studentas& b) {
-    return a.galutinisBalas_ > b.galutinisBalas_;
+    return a.galutinis() < b.galutinis();
 }
