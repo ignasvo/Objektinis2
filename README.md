@@ -1,35 +1,16 @@
-## Versija v1.2 – Rule of Five ir įvesties/išvesties palaikymas
 
-Šioje versijoje `Studentas` klasė praplėsta įgyvendinant visus 5 specialiuosius metodus pagal „Rule of Five“ principą:
+# Versija v1.5 - Abstrakti klasė
 
-- Kopijavimo konstruktorius
-- Perkėlimo konstruktorius
-- Kopijavimo priskyrimo operatorius
-- Perkėlimo priskyrimo operatorius
-- Destruktorius
-
-Taip pat sukurti ir perdengti srautų operatoriai `>>` ir `<<`, leidžiantys patogiai naudoti objektus su `cin`, `cout`, `ifstream` ir `ofstream`.
-
----
+## Apžvalga
+Ši versija pristato `Studentas` klasę, išvestą iš abstrakčios `Žmogus` klasės. Abstrakčioji klasė `Žmogus` negali būti tiesiogiai naudojama kuriant objektus, o tik kaip bazinė klasė iš kurios paveldimos kitos klasės (pvz., `Studentas`). Tai leidžia geriau struktūruoti kodą ir atskirti bendras savybes, kurios taikomos visiems žmonėms, ir specifines savybes, susijusias su studentais.
 
 
-### Įvestis ir išvestis
+## Testai
+Visi ankstesni v1.2 versijos testai buvo iš naujo patikrinti ir veikia pagal senąją logiką, tačiau pritaikyti naujai klasių struktūrai.
 
-- Duomenis galima įvesti ranka per terminalą arba nuskaitant iš failo, pvz.:
-  ```
-  Jonas Jonaitis 10 9 8 7
-  ```
-- Išvestis atliekama per `operator<<` – išvedami vardas, pavardė ir galutinis balas:
-  ```
-  Jonas          Jonaitis       8.40
-  ```
+![image](https://github.com/user-attachments/assets/ecf7af47-0152-4e53-9539-9fbc8d0ce461)
 
----
 
-### Testavimas
+## Naudojimo pavyzdys:
 
-Sukurtas testavimo failas `testas.cpp`, kuris patikrina visų metodų veikimą:  
-kopijavimą, perkėlimą, įvestį/išvestį.  
-Jei testas išsiveda be klaidų – visi metodai veikia teisingai.
-
-![image](https://github.com/user-attachments/assets/819ffdc5-ddf9-49f4-b623-40cfb9bda8b4)
+![image](https://github.com/user-attachments/assets/e6836e42-b24a-409b-8fb3-a49668406725)
