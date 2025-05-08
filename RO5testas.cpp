@@ -53,6 +53,13 @@ void testIO() {
     std::cout << s << "\n";
 }
 
+void testZmogus() {
+    /*std::cout << "\nAbstrakcios klases testas" << std::endl;
+     Zmogus z;  // Kelia klaida, nes Zmogus yra abstrakti klase
+     Zmogus z("Jonas", "Jonaitis");  
+     */
+}
+
 int main() {
     testRuleOfFive();
     testDestruktorius();
