@@ -6,11 +6,10 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <zmogus.h>
 
-class Studentas {
+class Studentas : public Zmogus {
 private:
-    std::string vardas_;
-    std::string pavarde_;
     std::vector<int> nd_;
     int egzaminas_;
     double galutinis_;
