@@ -6,18 +6,30 @@ void testRuleOfFive() {
     std::cout << "Rule of Five testas\n";
 
     Studentas s1("Testas", "Testavicius", {9, 8, 10}, 10);
-    Studentas s2 = s1;  // kopijavimo konstruktorius
+    std::cout << "s1 sukurtas: " << s1 << "\n";
 
-    Studentas s3 = std::move(s1);  // perkėlimo konstruktorius
+    Studentas s2(s1);  // kopijavimo konstruktorius
+    std::cout << "s2 (kopija s1): " << s2 << "\n";
+    std::cout << "s1 po kopijavimo: " << s1 << "\n"; // Turi likti toks pat
+
+    Studentas s3(std::move(s1));  // perkėlimo konstruktorius
+    std::cout << "s3 (perkeltas s1): " << s3 << "\n";
+    std::cout << "s1 po perkelimo: " << s1 << "\n"; // Turi būti tuščias/numatytasis
 
     Studentas s4;
     s4 = s2;  // kopijavimo priskyrimas
+    std::cout << "s4 (priskirtas s2): " << s4 << "\n";
+    std::cout << "s2 po priskyrimo: " << s2 << "\n"; // Turi likti toks pat
 
     Studentas s5;
     s5 = std::move(s3);  // perkėlimo priskyrimas
+    std::cout << "s5 (perkeltas s3): " << s5 << "\n";
+    std::cout << "s3 po perkelimo: " << s3 << "\n"; // Turi būti tuščias/numatytasis
 
-    std::cout << "\nObjektai sukurti kopijavimo ir perkelimo budu:\n";
+    std::cout << "\nGalutines objektu busenos:\n";
+    std::cout << "s1: " << s1 << "\n";
     std::cout << "s2: " << s2 << "\n";
+    std::cout << "s3: " << s3 << "\n";
     std::cout << "s4: " << s4 << "\n";
     std::cout << "s5: " << s5 << "\n";
 }
