@@ -1,6 +1,7 @@
 #ifndef STUDENTAS_H
 #define STUDENTAS_H
 
+#include <ostream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -24,15 +25,11 @@ public:
     Studentas& operator=(Studentas&& other) noexcept; // Move assignment
 
     // Getteriai
-    std::string vardas() const;
-    std::string pavarde() const;
     int egzaminas() const;
     double galutinis() const;
     const std::vector<int>& nd() const;
 
     // Setteriai
-    void setVardas(const std::string& vardas);
-    void setPavarde(const std::string& pavarde);
     void setEgzaminas(int egzaminas);
     void pridetiND(int pazymys);
 
@@ -40,6 +37,7 @@ public:
     void skaiciuotiGalutini(char metodas);
     void generuotiPazymius(int kiek);
     std::istream& read(std::istream& is);
+    std::ostream& spausdinti(std::ostream& os) const override;
 
     // I/O operatoriai
     friend std::ostream& operator<<(std::ostream& os, const Studentas& s);

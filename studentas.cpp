@@ -32,8 +32,6 @@ Studentas::Studentas(Studentas&& other) noexcept
 // Destruktorius
 Studentas::~Studentas() {
     nd_.clear();
-    vardas_.clear();
-    pavarde_.clear();
     egzaminas_ = 0;
     galutinis_ = 0.0;
 }
@@ -100,6 +98,14 @@ void Studentas::skaiciuotiGalutini(char metodas) {
     galutinis_ = 0.4 * ndRezultatas + 0.6 * egzaminas_;
 }
 
+std::ostream& Studentas::spausdinti(std::ostream& os) const {
+    os << std::left << std::setw(15) << vardas()
+       << std::setw(15) << pavarde()
+       << std::fixed << std::setprecision(2)
+       << galutinis_;
+    return os;
+}
+
 // I/O operatoriai
 std::istream& Studentas::read(std::istream& is) {
     nd_.clear();
@@ -126,10 +132,7 @@ std::istream& operator>>(std::istream& is, Studentas& s) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Studentas& s) {
-    os << std::left << std::setw(15) << s.vardas_
-       << std::setw(15) << s.pavarde_
-       << std::fixed << std::setprecision(2)
-       << s.galutinis_;
+    s.spausdinti(os);
     return os;
 }
 

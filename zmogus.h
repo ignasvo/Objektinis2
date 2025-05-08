@@ -21,7 +21,7 @@ public:
     void setVardas(const std::string& vardas) { vardas_ = vardas; }
     void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
 
-    virtual void spausdinti() const = 0; // abstraktus metodas
+    virtual std::ostream& spausdinti(std::ostream& os) const = 0;
 };
 
 #endif
