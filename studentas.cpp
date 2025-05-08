@@ -7,23 +7,23 @@
 
 // Default konstruktorius
 Studentas::Studentas()
-    : vardas_(""), pavarde_(""), nd_(), egzaminas_(0), galutinis_(0.0) {}
+    : Zmogus(), nd_(), egzaminas_(0), galutinis_(0.0) {}
 
 // Užpildytas konstruktorius
 Studentas::Studentas(const std::string& vardas, const std::string& pavarde,
                      const std::vector<int>& nd, int egzaminas)
-    : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas) {
+    : Zmogus(vardas, pavarde), nd_(nd), egzaminas_(egzaminas) {
     skaiciuotiGalutini('v');  // default 'vidurkis'
 }
 
 // Kopijavimo konstruktorius
 Studentas::Studentas(const Studentas& other)
-    : vardas_(other.vardas_), pavarde_(other.pavarde_),
+    : Zmogus(other),
       nd_(other.nd_), egzaminas_(other.egzaminas_), galutinis_(other.galutinis_) {}
 
 // Perkėlimo konstruktorius
 Studentas::Studentas(Studentas&& other) noexcept
-    : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
+    : Zmogus(std::move(other)),
       nd_(std::move(other.nd_)), egzaminas_(other.egzaminas_), galutinis_(other.galutinis_) {
     other.egzaminas_ = 0;
     other.galutinis_ = 0.0;
@@ -41,8 +41,7 @@ Studentas::~Studentas() {
 // Copy assignment
 Studentas& Studentas::operator=(const Studentas& other) {
     if (this != &other) {
-        vardas_ = other.vardas_;
-        pavarde_ = other.pavarde_;
+        Zmogus::operator=(other);
         nd_ = other.nd_;
         egzaminas_ = other.egzaminas_;
         galutinis_ = other.galutinis_;
@@ -53,8 +52,7 @@ Studentas& Studentas::operator=(const Studentas& other) {
 // Move assignment
 Studentas& Studentas::operator=(Studentas&& other) noexcept {
     if (this != &other) {
-        vardas_ = std::move(other.vardas_);
-        pavarde_ = std::move(other.pavarde_);
+        Zmogus::operator=(std::move(other));
         nd_ = std::move(other.nd_);
         egzaminas_ = other.egzaminas_;
         galutinis_ = other.galutinis_;
@@ -65,15 +63,11 @@ Studentas& Studentas::operator=(Studentas&& other) noexcept {
 }
 
 // Getteriai
-std::string Studentas::vardas() const { return vardas_; }
-std::string Studentas::pavarde() const { return pavarde_; }
 double Studentas::galutinis() const { return galutinis_; }
 const std::vector<int>& Studentas::nd() const { return nd_;}
 int Studentas::egzaminas() const { return egzaminas_;}
 
 // Setteriai
-void Studentas::setVardas(const std::string& vardas) { vardas_ = vardas; }
-void Studentas::setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
 void Studentas::setEgzaminas(int egz) { egzaminas_ = egz; }
 void Studentas::pridetiND(int nd) { nd_.push_back(nd); }
 

@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
-#include <zmogus.h>
+#include "zmogus.h"
 
 class Studentas : public Zmogus {
 private:
