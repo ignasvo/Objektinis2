@@ -17,12 +17,12 @@ void testRuleOfFive() {
     std::cout << "s1 po perkelimo: " << s1 << "\n"; // Turi būti tuščias/numatytasis
 
     Studentas s4;
-    s4 = s2;  // kopijavimo priskyrimas
+    s4.operator=(s2);
     std::cout << "s4 (priskirtas s2): " << s4 << "\n";
     std::cout << "s2 po priskyrimo: " << s2 << "\n"; // Turi likti toks pat
 
     Studentas s5;
-    s5 = std::move(s3);  // perkėlimo priskyrimas
+    s5.operator=(std::move(s3));
     std::cout << "s5 (perkeltas s3): " << s5 << "\n";
     std::cout << "s3 po perkelimo: " << s3 << "\n"; // Turi būti tuščias/numatytasis
 

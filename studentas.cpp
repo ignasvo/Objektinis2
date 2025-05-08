@@ -91,9 +91,9 @@ void Studentas::skaiciuotiGalutini(char metodas) {
     }
 
     double ndRezultatas = 0.0;
-    if (metodas == 'v') {
+    if (metodas == 'v'|| metodas == 'V') {
         ndRezultatas = std::accumulate(nd_.begin(), nd_.end(), 0.0) / nd_.size();
-    } else if (metodas == 'm') {
+    } else if (metodas == 'm'|| metodas == 'M') {
         std::sort(nd_.begin(), nd_.end());
         if (nd_.size() % 2 == 0)
             ndRezultatas = (nd_[nd_.size()/2 - 1] + nd_[nd_.size()/2]) / 2.0;
