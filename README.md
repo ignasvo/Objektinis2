@@ -77,5 +77,5 @@ Testuojami metodai:
 
 Doxygen dokumentacija yra sugeneruota ir prieinama:
 
-- `docs/html/index.html` – HTML versija
-- `docs/latex/refman.pdf` – PDF versija (kompiliuota per Overleaf)
+- `html/index.html` – HTML versija
+- `latex/studentai.pdf` – PDF versija (kompiliuota per Overleaf)
