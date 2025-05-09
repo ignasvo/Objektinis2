@@ -123,7 +123,7 @@ void rikiuotiStudentus(std::vector<Studentas>& studentai, char kriterijus) {
 
 
 // Funkcija: generuoti failą su studentais
-void generuotiFaila(const std::string& failoPavadinimas, int studentuKiekis, int ndSk, char metodas) {
+void generuotiFaila(const std::string& failoPavadinimas, int studentuKiekis, int ndSk) {
     std::vector<Studentas> studentai;
     generuotiStudentus(studentai, studentuKiekis, ndSk);
 
@@ -326,7 +326,7 @@ void vykdytiPrograma() {
                     std::cin >> failas;
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-                    generuotiFaila(failas, kiek, ndSk, metodas);
+                    generuotiFaila(failas, kiek, ndSk);
                 }
 
                 else if (pasirinkimas == 6) {
