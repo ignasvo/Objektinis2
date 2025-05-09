@@ -1,16 +1,81 @@
+# Studentų apdorojimo sistema 2.0
 
-# Versija v1.5 - Abstrakti klasė
+Ši programa skirta apdoroti studentų duomenis: skaičiuoti galutinį pažymį pagal namų darbus ir egzaminą, rikiuoti, filtruoti bei dirbti su įvairiomis strategijomis.
 
-## Apžvalga
-Ši versija pristato `Studentas` klasę, išvestą iš abstrakčios `Žmogus` klasės. Abstrakčioji klasė `Žmogus` negali būti tiesiogiai naudojama kuriant objektus, o tik kaip bazinė klasė iš kurios paveldimos kitos klasės (pvz., `Studentas`). Tai leidžia geriau struktūruoti kodą ir atskirti bendras savybes, kurios taikomos visiems žmonėms, ir specifines savybes, susijusias su studentais.
+Projektas išskaidytas į kelias versijas, palaikantis modernius OOP principus, unit testavimą bei dokumentaciją su Doxygen.
 
+---
 
-## Testai
-Visi ankstesni v1.2 versijos testai buvo iš naujo patikrinti ir veikia pagal senąją logiką, tačiau pritaikyti naujai klasių struktūrai.
+## Versijos
 
-![image](https://github.com/user-attachments/assets/ecf7af47-0152-4e53-9539-9fbc8d0ce461)
+### v1.0
+- Naudojama `struct Student`
+- Bazinė logika: skaitymas, skaičiavimai, spausdinimas
 
+### v1.1
+- `struct` pakeistas į `class Studentas`
+- Įgyvendinti getteriai, setteriai, konstruktoriai
 
-## Naudojimo pavyzdys:
+### v1.2
+- Pilnai realizuota **Rule of Five**:
+  - kopijavimo/perkėlimo konstruktoriai ir operatoriai
+  - destruktorius
+- Įvesties/išvesties operatoriai
 
-![image](https://github.com/user-attachments/assets/e6836e42-b24a-409b-8fb3-a49668406725)
+### v1.5
+- Sukurta abstrakti bazinė klasė `Zmogus`
+- `Studentas` paveldi iš `Zmogus`
+- Naudojamas polimorfizmas (virtuali funkcija `spausdinti`)
+
+### v2.0
+- Sukurti unit testai su [doctest](https://github.com/doctest/doctest)
+- Sugeneruota Doxygen dokumentacija (HTML ir PDF)
+- Naudojamas `Makefile` projekto valdymui
+- README papildytas instrukcijomis ir rezultatais
+
+---
+
+## Diegimo instrukcija
+
+### Reikalavimai:
+- MinGW arba GCC
+- `mingw32-make`
+- Papildomai testams: `doctest.h` (yra `tests/` aplanke)
+
+---
+
+## Naudojimas
+
+### Paleisti programą:
+```bash
+mingw32-make run
+```
+### Paleisti testus:
+```bash
+mingw32-make tests
+```
+
+## Unit testai
+
+Testai išdėstyti failuose:
+
+- `tests/RO5testas.cpp` – testuoja **Rule of Five** metodus
+- `tests/PapildomiTestai.cpp` – testuoja **loginę funkcijų veikimą**
+
+Testuojami metodai:
+
+- ✅ Kopijavimo konstruktorius
+- ✅ Perkėlimo konstruktorius
+- ✅ Kopijavimo priskyrimo operatorius
+- ✅ Perkėlimo priskyrimo operatorius
+- ✅ Galutinio balo skaičiavimas (vidurkis ir mediana)
+- ✅ Įvestis per `read()` funkciją
+
+---
+
+## Dokumentacija
+
+Doxygen dokumentacija yra sugeneruota ir prieinama:
+
+- `docs/html/index.html` – HTML versija
+- `docs/latex/refman.pdf` – PDF versija (kompiliuota per Overleaf)
