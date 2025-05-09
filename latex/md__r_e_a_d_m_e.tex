@@ -1,0 +1,100 @@
+\chapter{Studentų apdorojimo sistema 2.0}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Studentų apdorojimo sistema 2.0@{Studentų apdorojimo sistema 2.0}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+Ši programa skirta apdoroti studentų duomenis\+: skaičiuoti galutinį pažymį pagal namų darbus ir egzaminą, rikiuoti, filtruoti bei dirbti su įvairiomis strategijomis.
+
+Projektas išskaidytas į kelias versijas, palaikantis modernius OOP principus, unit testavimą bei dokumentaciją su Doxygen.
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Versijos}{Versijos}}\label{md__r_e_a_d_m_e_autotoc_md2}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{v1.\+0}{v1.\+0}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Naudojama {\ttfamily struct Student}
+\item Bazinė logika\+: skaitymas, skaičiavimai, spausdinimas
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{v1.\+1}{v1.\+1}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\ttfamily struct} pakeistas į {\ttfamily class \doxylink{class_studentas}{Studentas}}
+\item Įgyvendinti getteriai, setteriai, konstruktoriai
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{\texorpdfstring{v1.\+2}{v1.\+2}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Pilnai realizuota {\bfseries{Rule of Five}}\+:
+\begin{DoxyItemize}
+\item kopijavimo/perkėlimo konstruktoriai ir operatoriai
+\item destruktorius
+\end{DoxyItemize}
+\item Įvesties/išvesties operatoriai
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{\texorpdfstring{v1.\+5}{v1.\+5}}\label{md__r_e_a_d_m_e_autotoc_md6}
+
+\begin{DoxyItemize}
+\item Sukurta abstrakti bazinė klasė {\ttfamily \doxylink{class_zmogus}{Zmogus}}
+\item {\ttfamily \doxylink{class_studentas}{Studentas}} paveldi iš {\ttfamily \doxylink{class_zmogus}{Zmogus}}
+\item Naudojamas polimorfizmas (virtuali funkcija {\ttfamily spausdinti})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{v2.\+0}{v2.\+0}}\label{md__r_e_a_d_m_e_autotoc_md7}
+
+\begin{DoxyItemize}
+\item Sukurti unit testai su \href{https://github.com/doctest/doctest}{\texttt{ doctest}}
+\item Sugeneruota Doxygen dokumentacija (HTML ir PDF)
+\item Naudojamas {\ttfamily Makefile} projekto valdymui
+\item README papildytas instrukcijomis ir rezultatais
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysection{\texorpdfstring{Diegimo instrukcija}{Diegimo instrukcija}}\label{md__r_e_a_d_m_e_autotoc_md9}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{\texorpdfstring{Reikalavimai\+:}{Reikalavimai\+:}}\label{md__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyItemize}
+\item Min\+GW arba GCC
+\item {\ttfamily mingw32-\/make}
+\item Papildomai testams\+: {\ttfamily doctest.\+h} (yra {\ttfamily tests/} aplanke)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysection{\texorpdfstring{Naudojimas}{Naudojimas}}\label{md__r_e_a_d_m_e_autotoc_md12}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsection{\texorpdfstring{Paleisti programą\+:}{Paleisti programą\+:}}\label{md__r_e_a_d_m_e_autotoc_md13}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mingw32-\/make\ run}
+
+\end{DoxyCode}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysubsection{\texorpdfstring{Paleisti testus\+:}{Paleisti testus\+:}}\label{md__r_e_a_d_m_e_autotoc_md14}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mingw32-\/make\ tests}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysection{\texorpdfstring{Unit testai}{Unit testai}}\label{md__r_e_a_d_m_e_autotoc_md15}
+Testai išdėstyti failuose\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily tests/\+RO5testas.\+cpp} – testuoja {\bfseries{Rule of Five}} metodus
+\item {\ttfamily tests/\+Papildomi\+Testai.\+cpp} – testuoja {\bfseries{loginę funkcijų veikimą}}
+\end{DoxyItemize}
+
+Testuojami metodai\+:
+
+
+\begin{DoxyItemize}
+\item ✅ Kopijavimo konstruktorius
+\item ✅ Perkėlimo konstruktorius
+\item ✅ Kopijavimo priskyrimo operatorius
+\item ✅ Perkėlimo priskyrimo operatorius
+\item ✅ Galutinio balo skaičiavimas (vidurkis ir mediana)
+\item ✅ Įvestis per {\ttfamily read()} funkciją
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md17}{}\doxysection{\texorpdfstring{Dokumentacija}{Dokumentacija}}\label{md__r_e_a_d_m_e_autotoc_md17}
+Doxygen dokumentacija yra sugeneruota ir prieinama\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily docs/html/index.\+html} – HTML versija
+\item {\ttfamily docs/latex/refman.\+pdf} – PDF versija (kompiliuota per Overleaf) 
+\end{DoxyItemize}

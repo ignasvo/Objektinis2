@@ -1,0 +1,48 @@
+\doxysection{funkcijos.\+h}
+\hypertarget{funkcijos_8h_source}{}\label{funkcijos_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FUNKCIJOS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FUNKCIJOS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Studentas.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cctype>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Funkcijos,\ kurios\ dirba\ su\ studentų\ sąrašu}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{bool}\ arTinkamasVardas(\textcolor{keyword}{const}\ std::string\&\ tekstas);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{bool}\ arTinkamasPazymys(\textcolor{keywordtype}{int}\&\ pazymys);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{double}\ skaiciuotiVidurki(\textcolor{keyword}{const}\ std::vector<int>\&\ pazymiai);}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{double}\ skaiciuotiMediana(std::vector<int>\ pazymiai);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Dirba\ su\ vienu\ Studentas\ objektu}}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ skaiciuotiGalutiniBala(\mbox{\hyperlink{class_studentas}{Studentas}}\&\ studentas,\ \textcolor{keywordtype}{char}\ metodas);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ generuotiPazymius(\mbox{\hyperlink{class_studentas}{Studentas}}\&\ studentas,\ \textcolor{keywordtype}{int}\ kiek);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ Dirba\ su\ studentų\ vektoriumi}}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ generuotiStudentus(std::vector<Studentas>\&\ studentai,\ \textcolor{keywordtype}{int}\ kiek,\ \textcolor{keywordtype}{int}\ ndSk);}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ spausdintiRezultatus(\textcolor{keyword}{const}\ std::vector<Studentas>\&\ studentai,\ std::ostream\&\ out);}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ nuskaitytiIsFailo(std::vector<Studentas>\&\ studentai,\ \textcolor{keyword}{const}\ std::string\&\ failoVardas);}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ rikiuotiStudentus(std::vector<Studentas>\&\ studentai,\ \textcolor{keywordtype}{char}\ kriterijus);}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ generuotiFaila(\textcolor{keyword}{const}\ std::string\&\ failoPavadinimas,\ \textcolor{keywordtype}{int}\ studentuKiekis,\ \textcolor{keywordtype}{int}\ ndSk,\ \textcolor{keywordtype}{char}\ metodas);}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ padalintiStudentus(\textcolor{keyword}{const}\ std::vector<Studentas>\&\ studentai,\ std::vector<Studentas>\&\ vargsiai,\ std::vector<Studentas>\&\ kietiakai);}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ spausdintiStudentusIFaila(\textcolor{keyword}{const}\ std::vector<Studentas>\&\ studentai,\ \textcolor{keyword}{const}\ std::string\&\ failoVardas);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ apdorotiFaila(\textcolor{keyword}{const}\ std::string\&\ failoVardas,\ \textcolor{keywordtype}{char}\ metodas);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ vykdytiPrograma();\ \textcolor{comment}{//\ Pagrindinė\ funkcija\ programos\ valdymui}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
