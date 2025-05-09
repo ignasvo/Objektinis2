@@ -188,8 +188,8 @@ void apdorotiFaila(const std::string& failoVardas, char metodas) {
         spausdintiStudentusIFaila(kietiakai, failoKietiakai);
 
         std::cout << "Failas " << failoVardas << " buvo apdorotas.\n";
-        std::cout << "  - Vargsių rezultatai: " << failoVargsiukai << "\n";
-        std::cout << "  - Kietių rezultatai: " << failoKietiakai << "\n";
+        std::cout << "  - Vargsiu rezultatai: " << failoVargsiukai << "\n";
+        std::cout << "  - Kietiu rezultatai: " << failoKietiakai << "\n";
     } catch (const std::exception& e) {
         std::cerr << "Klaida: " << e.what() << "\n";
     }
