@@ -184,12 +184,19 @@ void apdorotiFaila(const std::string& failoVardas, char metodas) {
         std::string failoVargsiukai = baseName + "_vargsiukai.txt";
         std::string failoKietiakai = baseName + "_kietiakai.txt";
 
+        char kriterijus;
+        std::cout << "Pasirinkite rikiavimo kriteriju (V - vardas, P - pavarde, G - galutinis balas): ";
+        std::cin >> kriterijus;
+        rikiuotiStudentus(vargsiai, kriterijus);
+        rikiuotiStudentus(kietiakai, kriterijus);
+
         spausdintiStudentusIFaila(vargsiai, failoVargsiukai);
         spausdintiStudentusIFaila(kietiakai, failoKietiakai);
+        
 
         std::cout << "Failas " << failoVardas << " buvo apdorotas.\n";
-        std::cout << "  - Vargsių rezultatai: " << failoVargsiukai << "\n";
-        std::cout << "  - Kietių rezultatai: " << failoKietiakai << "\n";
+        std::cout << "  - Vargsiu rezultatai: " << failoVargsiukai << "\n";
+        std::cout << "  - Kietiu rezultatai: " << failoKietiakai << "\n";
     } catch (const std::exception& e) {
         std::cerr << "Klaida: " << e.what() << "\n";
     }
